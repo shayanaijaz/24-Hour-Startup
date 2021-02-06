@@ -35,12 +35,12 @@ export class DevicesPage implements OnInit {
     this.loadedDevice = this.devicesService.devices;
   }
   ionViewDidEnter() {
-    this.createDoughnutChart();
   }
 
   onView(id: string) {
     this.showDetails = !this.showDetails;
     this.buttonClicked = id;
+    this.createDoughnutChart();
   }
 
   createDoughnutChart() {
