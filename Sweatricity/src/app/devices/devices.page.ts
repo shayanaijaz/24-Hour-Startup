@@ -69,6 +69,7 @@ export class DevicesPage implements OnInit {
   onView(id: string) {
     this.showDetails = !this.showDetails;
     this.buttonClicked = id;
+    this.createDoughnutChart();
   }
 
   createDoughnutChart() {
