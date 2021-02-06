@@ -5,58 +5,27 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-row class="ion-align-items-start" class="ion-padding ion-margin">
-  <ion-col offset=1>
-    <ion-title color="primary">Dashboard</ion-title>
+<ion-row class="ion-align-items-center" class="ion-padding ion-margin">
+  <ion-col offset=2>
+    <ion-title color="primary">Welcome {{ user }}!</ion-title>
   </ion-col>
 </ion-row>
 
 <ion-content>
   <ion-grid>
-    <div class="ion-padding">
-      <ion-card>
-        <ion-card-header>
-          Bar Chart
-        </ion-card-header>
-        <ion-card-content>
-          <canvas #barChart1></canvas>
-        </ion-card-content>
-      </ion-card>
+    <ion-row>
+      <ion-col offset=2 size=8>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>{{ this.date | date : fullDate }}</ion-card-subtitle>
+            <ion-card-title>Today's Energy Production</ion-card-title>
+          </ion-card-header>
 
-      <ion-card>
-        <ion-card-header>
-          Evolution Fitness Time Distribution
-        </ion-card-header>
-        <ion-card-content>
-          <canvas #doughnutChart1></canvas>
-        </ion-card-content>
-      </ion-card>
+          <ion-card-content>
 
-      <ion-card>
-        <ion-card-header>
-          Evolution Fitness Bike Machines
-        </ion-card-header>
-        <ion-card-content>
-          <canvas #lineChart1></canvas>
-        </ion-card-content>
-      </ion-card>
-      <ion-card>
-        <ion-card-header>
-          Evolution Fitness Elliptical Machines
-        </ion-card-header>
-        <ion-card-content>
-          <canvas #lineChart2></canvas>
-        </ion-card-content>
-      </ion-card>
-      <ion-card>
-        <ion-card-header>
-          Evolution Fitness Rowing Machines
-        </ion-card-header>
-        <ion-card-content>
-          <canvas #lineChart3></canvas>
-        </ion-card-content>
-      </ion-card>
-    </div>
-
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </ion-content>
