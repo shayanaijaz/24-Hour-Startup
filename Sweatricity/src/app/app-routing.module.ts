@@ -12,8 +12,8 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'analytics',
-    loadChildren: () => import('./analytics/analytics.module').then( m => m.AnalyticsPageModule)
+    path: 'devices',
+    loadChildren: () => import('./devices/devices.module').then( m => m.DevicesPageModule)
   },
 ];
 

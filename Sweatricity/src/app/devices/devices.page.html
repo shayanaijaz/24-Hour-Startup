@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="m1"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+<ion-grid>
+  <ion-row class="ion-align-items-start" class="ion-padding ion-margin">
+    <ion-col offset=1>
+      <ion-title color="primary">Devices</ion-title>
+    </ion-col>
+  </ion-row>
+
+<ion-row class="ion-justify-content-start">
+  <ion-col size="12" size-md="6" offset-md="1">
+    <ion-searchbar [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
+  </ion-col>
+</ion-row>
+
+<ion-card *ngFor="let singleDevice of loadedDevice | filter:filterTerm">
+  <ion-item class="ion-activated">
+    <ion-icon *ngIf="singleDevice.deviceName === 'biking'" name="bicycle-outline" slot="start"></ion-icon>
+    <ion-icon *ngIf="singleDevice.deviceName === 'elliptical'" name="walk-outline" slot="start"></ion-icon>
+    <ion-icon *ngIf="singleDevice.deviceName === 'rowing'"name="aperture-outline" slot="start"></ion-icon>
+    <ion-label>{{ singleDevice.deviceName | titlecase }} machine, Id: {{ singleDevice.deviceId }}</ion-label>
+    <ion-button fill="outline" slot="end" (click)="onView(singleDevice.deviceId)">View</ion-button>
+  </ion-item>
+        <ion-card-content *ngIf="this.showDetails === true && this.buttonClicked === singleDevice.deviceId">
+          <ion-row>
+            <!-- Doughnut graph for hours spent on machine today-->
+            <ion-col>
+              <ion-card>
+                <ion-card-content>
+                  <canvas #doughnutChartHoursToday></canvas>
+                </ion-card-content>
+              </ion-card>
+
+            </ion-col>
+            <ion-col>
+
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+
+
+</ion-card>
+</ion-grid>
+</ion-content>
