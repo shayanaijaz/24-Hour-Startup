@@ -120,7 +120,6 @@ export class AnalyticsPage implements OnInit {
     }
 
 
-
 /*
       createDoughnutChart() {
       this.doughnutChartBike = new Chart(this.doughnutChart1.nativeElement, {
