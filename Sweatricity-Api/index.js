@@ -1,4 +1,6 @@
 var express = require("express");
+var cors = require("cors")
+
 const { getPackedSettings } = require("http2");
 
 const {Client} = require('pg');
@@ -16,6 +18,7 @@ client.connect();
 
 var app = express();
 
+app.use(cors());
 
 
 app.get("/devices", async (req, res, next) => {
@@ -35,6 +38,16 @@ app.get("/devices/generator/:id", async (req, res, next) => {
     var result = await client.query('SELECT * FROM public.generators WHERE id = $1', value);
 
     console.log(result.rows)
+
+    res.status(200).send(result.rows);
+})
+
+app.get("/devices/:id/generators", async(req, res, next) => {
+    var value = [req.params.id];
+
+    var result = await client.query('SELECT * FROM public.generators WHERE device_id = $1', value);
+
+    console.log(result.rows);
 
     res.status(200).send(result.rows);
 })

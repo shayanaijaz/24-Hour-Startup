@@ -1,4 +1,4 @@
-import { Time } from "@angular/common";
+
 
 export class Device {
   constructor(
@@ -9,4 +9,14 @@ export class Device {
       public startTime: string,
       public endTime: string
   ) {}
+}
+
+export interface Generator {
+    device_id: string;
+    equipment: string;
+    id:        string;
+    output_frequency: string;
+    start_time: string;
+    stop_time: string;
+    status: string;
 }

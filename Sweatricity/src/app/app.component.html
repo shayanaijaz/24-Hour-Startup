@@ -1,32 +1,27 @@
 <ion-app>
   <ion-split-pane when="md" contentId="content" class="split-pane">
-  <ion-menu side="start" contentId="content" #menu menuId="m1">
-    <ion-header>
-      <ion-toolbar class="toolbar" color="primary">
-        <ion-title>Sweatricity</ion-title>
-      </ion-toolbar>
+  <ion-menu side="start" contentId="content" #menu menuId="m1" style="border-right: none; width: 1%">
+    <ion-header style="height: 7%; background-color: var(--ion-color-primary); padding-left: 20px; padding-top: 7px;">
+      <!-- <ion-toolbar class="toolbar" color="primary">
+        <ion-title>kW Tech</ion-title>
+      </ion-toolbar> -->
+      <img src="../assets/Logo.png" style="max-width: 28%;">
+
     </ion-header>
 
-    <ion-content>
+    <ion-content style="border-right: 1px solid grey;">
       <ion-list detail="false">
-        <ion-menu-toggle auto-hide="false">
         <ion-item lines="none" detail="false" routerLink="/home">
-          <ion-icon name="today-outline" slot="start"></ion-icon>
+          <ion-icon name="today-outline" slot=start></ion-icon>
           <ion-label>Dashboard</ion-label>
         </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle>
         <ion-item lines="none" detail="false" routerLink="/devices">
-          <ion-icon name="bicycle-outline" slot="start"></ion-icon>
+          <ion-icon name="bicycle-outline" slot=start></ion-icon>
           <ion-label>Devices</ion-label>
         </ion-item>
-      </ion-menu-toggle>
-    <ion-menu-toggle>
       <ion-item lines="none" detail="false" (click)="onLogout()" button>
-        <ion-icon name="exit" slot="start"></ion-icon>
-        <ion-label>Logout</ion-label>
+        <ion-icon name="exit" style="width: 100%;"></ion-icon>
       </ion-item>
-    </ion-menu-toggle>
     </ion-list>
     </ion-content>
 

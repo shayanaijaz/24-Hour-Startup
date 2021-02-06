@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Device } from './device.model';
 
@@ -6,7 +7,7 @@ import { Device } from './device.model';
 })
 export class DevicesService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   private _devices: Device[] =[
     {
@@ -38,4 +39,10 @@ export class DevicesService {
 get devices() {
     return [...this._devices];
 }
+
+  async getGeneratorList(device_id: string) {
+    return this.http.get<any>('https://a062826bec3d.ngrok.io' + '/devices/' + device_id + '/generators');
+  }
+
+
 }

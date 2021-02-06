@@ -9,6 +9,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 import { DevicesPage } from './devices.page';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { DevicesPage } from './devices.page';
     FormsModule,
     IonicModule,
     DevicesPageRoutingModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    HttpClientModule
   ],
   declarations: [DevicesPage]
 })
