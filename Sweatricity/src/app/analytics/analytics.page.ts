@@ -17,6 +17,7 @@ export class AnalyticsPage implements OnInit {
   @ViewChild('barChart1') barChart1: ElementRef;
   @ViewChild("barChart2") barChart2: ElementRef;
   @ViewChild('select', {static: false}) select: IonSelect;
+  @ViewChild("doughnutChart") doughnutChart: ElementRef;
   //@ViewChild("barChart3") barChart3: ElementRef;
 
 
@@ -46,8 +47,8 @@ export class AnalyticsPage implements OnInit {
 
     ionViewDidEnter() {
       if (this.filter == 'all') {
-        this.createBarChart([478, 464, 467, 448, 429, 438, 420, 425, 432, 445, 466, 470], 'Total Money Saved Each Month in Dollars');
-        this.createBarChart2([6453, 6264, 6304.5, 6048, 5791.5, 5913, 5670, 5737.5, 5832, 6007.5, 6291, 6345], 'Total Energy Produced Each Month (kW)');
+        this.createBarChart([178, 164, 167, 148, 129, 138, 120, 125, 132, 145, 166, 170], 'Total Money Saved Each Month in Dollars');
+        this.createBarChart2([2453, 2264, 2304.5, 2048, 1791.5, 1913, 1670, 1737.5, 1832, 2007.5, 2291, 2345], 'Total Energy Produced Each Month (kW)');
         }
       /*
       if (this.filter == 'bike') {
@@ -67,7 +68,7 @@ export class AnalyticsPage implements OnInit {
       this.createLineElChart();
       this.createLineRowChart();
       this.createLineBikeChart();
-      //this.createDoughnutChart();
+      this.createDoughnutChart();
     }
 
     createBarChart(data: number[], label: string) {
@@ -120,16 +121,16 @@ export class AnalyticsPage implements OnInit {
     }
 
 
-/*
+
       createDoughnutChart() {
-      this.doughnutChartBike = new Chart(this.doughnutChart1.nativeElement, {
+      this.doughnutChartBike = new Chart(this.doughnutChart.nativeElement, {
         type: "doughnut",
         data: {
-          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+          labels: ["Energy Bill", "Money Saved"],
           datasets: [
             {
-              label: "# of Votes",
-              data: [12, 19, 3, 5, 2, 3],
+              label: "Energy Bill vs. Money Saved ($)",
+              data: [312, 120],
               backgroundColor: [
                 "rgba(255, 99, 132, 0.2)",
                 "rgba(54, 162, 235, 0.2)",
@@ -143,7 +144,7 @@ export class AnalyticsPage implements OnInit {
           ]
         }
       });
-    } */
+    }
     createLineBikeChart() {
       this.lineChartBike = new Chart(this.lineChart1.nativeElement, {
         type: "line",
