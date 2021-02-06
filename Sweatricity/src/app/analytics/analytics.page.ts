@@ -1,4 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { IonSelect } from '@ionic/angular';
 import { Chart } from "chart.js";
 
 @Component({
@@ -14,6 +16,7 @@ export class AnalyticsPage implements OnInit {
   @ViewChild("lineChart3") lineChart3: ElementRef;
   @ViewChild('barChart1') barChart1: ElementRef;
   @ViewChild("barChart2") barChart2: ElementRef;
+  @ViewChild('select', {static: false}) select: IonSelect;
   //@ViewChild("barChart3") barChart3: ElementRef;
 
 
@@ -26,32 +29,55 @@ export class AnalyticsPage implements OnInit {
 
     bars: any;
     colorArray: any;
+    filter: string;
+    form: FormGroup;
+
 
   constructor() {}
 
-  ngOnInit() { }
-  ionWillEnter() {
+  ngOnInit() {
 
+
+}
+
+  ionViewWillEnter() {
+    this.filter='all';
   }
 
     ionViewDidEnter() {
-      this.createBarChart();
-      this.createBarChart2();
+      if (this.filter == 'all') {
+        this.createBarChart([478, 464, 467, 448, 429, 438, 420, 425, 432, 445, 466, 470], 'Total Money Saved Each Month in Dollars');
+        this.createBarChart2([6453, 6264, 6304.5, 6048, 5791.5, 5913, 5670, 5737.5, 5832, 6007.5, 6291, 6345], 'Total Energy Produced Each Month (kW)');
+        }
+      /*
+      if (this.filter == 'bike') {
+        this.createBarChart([278, 264, 267, 248, 229, 238, 220, 225, 232, 245, 266, 270], 'Total Money Saved Each Month From Bike Machines');
+        this.createBarChart2([3453, 3264, 3304.5, 3048, 2791.5, 2913, 2670, 2737.5, 2832, 3007.5, 3291, 3345], 'Energy Produced Each Month (kW) from Bike Machines');
+        }
+      if (this.filter == 'el') {
+        this.createBarChart([178, 164, 167, 148, 129, 138, 120, 125, 132, 145, 166, 170], 'Total Money Saved Each Month From Elliptical Machines');
+        this.createBarChart2([2453, 2264, 2304.5, 2048, 1791.5, 1913, 1670, 1737.5, 1832, 2007.5, 2291, 2345], 'Energy Produced Each Month (kW) From Elliptical Machines');
+        }
+      if (this.filter == 'row') {
+        this.createBarChart([110, 98, 99, 87, 79, 56, 54, 50, 55, 68, 87, 94], 'Total Money Saved Each Month in Dollars');
+        this.createBarChart2([1453, 1264, 1304.5, 1048, 791.5, 913, 670, 737.5, 832, 1007.5, 1291, 1345], 'Energy Produced Each Month (kW) From Rowing Machines');
+        } */
+
+      //Line graphs
       this.createLineElChart();
       this.createLineRowChart();
-
       this.createLineBikeChart();
       //this.createDoughnutChart();
     }
 
-    createBarChart() {
+    createBarChart(data: number[], label: string) {
       this.barChartMoneySaved = new Chart(this.barChart1.nativeElement, {
         type: 'bar',
         data: {
           labels: ['January', "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
           datasets: [{
-            label: 'Total Money Saved Each Month',
-            data: [529, 488, 440, 454, 478, 500, 508, 519, 507, 499, 480, 470],
+            label: label,
+            data: data,
             backgroundColor: 'rgb(38, 194, 129)', // array should have same number of elements as number of dataset
             borderColor: 'rgb(38, 194, 129)',// array should have same number of elements as number of dataset
             borderWidth: 1
@@ -68,14 +94,14 @@ export class AnalyticsPage implements OnInit {
         }
       });
     }
-    createBarChart2() {
+    createBarChart2(data: number[], label: string) {
       this.barChartEnergy = new Chart(this.barChart2.nativeElement, {
         type: 'bar',
         data: {
           labels: ['January', "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
           datasets: [{
-            label: 'Total Energy Produced Each Month (',
-            data: [529, 488, 440, 454, 478, 500, 508, 519, 507, 499, 480, 470],
+            label: label,
+            data: data,
             backgroundColor: 'rgb(38, 194, 129)', // array should have same number of elements as number of dataset
             borderColor: 'rgb(38, 194, 129)',// array should have same number of elements as number of dataset
             borderWidth: 1
@@ -92,6 +118,9 @@ export class AnalyticsPage implements OnInit {
         }
       });
     }
+
+
+
 /*
       createDoughnutChart() {
       this.doughnutChartBike = new Chart(this.doughnutChart1.nativeElement, {
@@ -211,5 +240,28 @@ export class AnalyticsPage implements OnInit {
           ]
         }
       });
+    }
+
+    onSelect() {
+      console.log(this.select.value);
+      this.filter = this.select.value;
+      console.log(this.filter);
+      if (this.filter === 'all') {
+      this.createBarChart([478, 464, 467, 448, 429, 438, 420, 425, 432, 445, 466, 470], 'Total Money Saved Each Month in Dollars');
+      this.createBarChart2([6453, 6264, 6304.5, 6048, 5791.5, 5913, 5670, 5737.5, 5832, 6007.5, 6291, 6345], 'Total Energy Produced Each Month (kW)');
+      }
+      if (this.filter === 'bike') {
+        this.createBarChart([278, 264, 267, 248, 229, 238, 220, 225, 232, 245, 266, 270], 'Total Money Saved Each Month From Bike Machines');
+        this.createBarChart2([3453, 3264, 3304.5, 3048, 2791.5, 2913, 2670, 2737.5, 2832, 3007.5, 3291, 3345], 'Total Energy Produced Each Month (kW) from Bike Machines');
+        console.log('in bike function')
+        }
+      if (this.filter === 'el') {
+        this.createBarChart([178, 164, 167, 148, 129, 138, 120, 125, 132, 145, 166, 170], 'Total Money Saved Each Month From Elliptical Machines');
+        this.createBarChart2([2453, 2264, 2304.5, 2048, 1791.5, 1913, 1670, 1737.5, 1832, 2007.5, 2291, 2345], 'Total Energy Produced Each Month (kW) From Elliptical Machines');
+        }
+      if (this.filter === 'row') {
+        this.createBarChart([110, 98, 99, 87, 79, 56, 54, 50, 55, 68, 87, 94], 'Total Money Saved Each Month in Dollars');
+        this.createBarChart2([1453, 1264, 1304.5, 1048, 791.5, 913, 670, 737.5, 832, 1007.5, 1291, 1345], 'Total Energy Produced Each Month (kW) From Rowing Machines');
+        }
     }
     }

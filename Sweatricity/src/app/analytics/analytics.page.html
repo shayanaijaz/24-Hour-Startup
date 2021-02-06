@@ -6,73 +6,165 @@
   </ion-toolbar>
 </ion-header>
 <ion-row class="ion-align-items-start" class="ion-padding ion-margin">
-  <ion-col offset=1>
+  <ion-col offset="1">
     <ion-title color="primary">Analytics</ion-title>
   </ion-col>
 </ion-row>
 
 <ion-content>
   <ion-grid>
-    <div class="ion-padding">
-      <ion-card>
-        <ion-card-header>
-          Evolution Fitness Money Saved
-        </ion-card-header>
-        <ion-card-content>
-          <canvas #barChart1></canvas>
-        </ion-card-content>
-      </ion-card>
-      <ion-card>
-        <ion-card-header>
-          Evolution Fitness Energy Produced
-        </ion-card-header>
-        <ion-card-content>
-          <canvas #barChart2></canvas>
-        </ion-card-content>
-      </ion-card>
+    <ion-row>
+      <ion-col size="10" offset="1">
+        <ion-row>
+          <ion-col offset-md="2" size-md="8">
+            <ion-item>
+              <ion-label position="floating">Filter by</ion-label>
+              <ion-select #select multiple="false" (ionChange)="onSelect()">
+                <ion-select-option value="all">General</ion-select-option>
+                <ion-select-option value="bike">Bike</ion-select-option>
+                <ion-select-option value="el">Elliptical</ion-select-option>
+                <ion-select-option value="row">Rowing</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
 
-      <ion-card>
-        <ion-card-header>
-          Evolution Fitness Time Distribution
-        </ion-card-header>
-        <ion-card-content>
-          <canvas #doughnutChart1></canvas>
-        </ion-card-content>
-      </ion-card>
+        <div class="ion-padding">
+          <ion-row *ngIf="this.filter === 'all'">
+            <ion-col size="12" size-lg="6">
+              <ion-card>
+                <ion-card-header>
+                  Evolution Fitness Total Money Saved
+                </ion-card-header>
+                <ion-card-content>
+                  <canvas #barChart1></canvas>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+            <ion-col size="12" size-lg="6">
+              <ion-card>
+                <ion-card-header>
+                  Evolution Fitness: Total Energy Produced
+                </ion-card-header>
+                <ion-card-content>
+                  <canvas #barChart2></canvas>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
 
-      <ion-row>
-        <ion-col size=12 size-lg=4>
+          <ion-row *ngIf="this.filter === 'bike'">
+            <ion-col size="12" size-lg="6">
+              <ion-card>
+                <ion-card-header>
+                  Evolution Fitness: Money Saved from Bike Machines
+                </ion-card-header>
+                <ion-card-content>
+                  <canvas #barChart1></canvas>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+            <ion-col size="12" size-lg="6">
+              <ion-card>
+                <ion-card-header>
+                  Evolution Fitness: Energy Produced by Bike Machines
+                </ion-card-header>
+                <ion-card-content>
+                  <canvas #barChart2></canvas>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+
+          <ion-row *ngIf="this.filter === 'el'">
+            <ion-col size="12" size-lg="6">
+              <ion-card>
+                <ion-card-header>
+                  Evolution Fitness: Money Saved from Elliptical Machines
+                </ion-card-header>
+                <ion-card-content>
+                  <canvas #barChart1></canvas>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+            <ion-col size="12" size-lg="6">
+              <ion-card>
+                <ion-card-header>
+                  Evolution Fitness: Energy Produced by Elliptical Machines
+                </ion-card-header>
+                <ion-card-content>
+                  <canvas #barChart2></canvas>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+
+          <ion-row *ngIf="this.filter === 'row'">
+            <ion-col size="12" size-lg="6">
+              <ion-card>
+                <ion-card-header>
+                  Evolution Fitness: Money Saved from Rowing Machines
+                </ion-card-header>
+                <ion-card-content>
+                  <canvas #barChart1></canvas>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+            <ion-col size="12" size-lg="6">
+              <ion-card>
+                <ion-card-header>
+                  Evolution Fitness: Energy Produced by Rowing Machines
+                </ion-card-header>
+                <ion-card-content>
+                  <canvas #barChart2></canvas>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+
           <ion-card>
             <ion-card-header>
-              Evolution Fitness Bike Machines
+              Evolution Fitness: Time Distribution
             </ion-card-header>
             <ion-card-content>
-              <canvas #lineChart1></canvas>
+              <canvas #doughnutChart1></canvas>
             </ion-card-content>
           </ion-card>
-        </ion-col>
-        <ion-col size=12 size-lg=4>
-          <ion-card>
-            <ion-card-header>
-              Evolution Fitness Elliptical Machines
-            </ion-card-header>
-            <ion-card-content>
-              <canvas #lineChart2></canvas>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
-        <ion-col size=12 size-lg=4>
-          <ion-card>
-            <ion-card-header>
-              Evolution Fitness Rowing Machines
-            </ion-card-header>
-            <ion-card-content>
-              <canvas #lineChart3></canvas>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-    </div>
 
+          <ion-row>
+            <ion-col size="12" size-lg="4">
+              <ion-card>
+                <ion-card-header>
+                  Evolution Fitness: Bike Machines
+                </ion-card-header>
+                <ion-card-content>
+                  <canvas #lineChart1></canvas>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+            <ion-col size="12" size-lg="4">
+              <ion-card>
+                <ion-card-header>
+                  Evolution Fitness: Elliptical Machines
+                </ion-card-header>
+                <ion-card-content>
+                  <canvas #lineChart2></canvas>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+            <ion-col size="12" size-lg="4">
+              <ion-card>
+                <ion-card-header>
+                  Evolution Fitness: Rowing Machines
+                </ion-card-header>
+                <ion-card-content>
+                  <canvas #lineChart3></canvas>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </ion-content>
